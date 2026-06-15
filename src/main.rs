@@ -2,12 +2,20 @@ mod operations;
 mod point;
 mod constants;
 
-use std::io;
+use crate::constants::*;
+use crate::point::Point;
 
 fn main() {
-    print!("Enter the desired elliptic curve: ");
-
-    let mut input = String::new();
-
-    io::stdin().read_line(&mut input).expect("Failed to receive input");
+    assert!(G.is_on_curve());
+    assert!(X.is_on_curve());
+    assert!(R.is_on_curve());
+    assert!(Z.is_on_curve());
+    assert!(A.is_on_curve());
+    assert!(B.is_on_curve());
+    assert_eq!(G.add(&Point::infinity()), G);
+    assert_eq!(Point::infinity().add(&G), G);
+    assert!(G.add(&G.neg()).infinity);
+    assert_eq!(G.add(&G), G.double());
+    assert_eq!(G.scalar_mult(3), G.double().add(&G));
+    assert!(G.scalar_mult(Q).infinity);
 }
