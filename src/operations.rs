@@ -1,3 +1,6 @@
+// All operations here use u128 in the partial operations
+// in order to avoid integer overflows
+
 pub fn mod_add(a: u64, b: u64, p: u64) -> u64 {
     ((a as u128 + b as u128) % p as u128) as u64
 }
