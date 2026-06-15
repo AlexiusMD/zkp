@@ -1,4 +1,6 @@
-mod ecc;
+mod operations;
+mod point;
+mod constants;
 
 use std::io;
 
