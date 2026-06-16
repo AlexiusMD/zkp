@@ -2,7 +2,7 @@ use crate::point::Point;
 
 // Prime and number of points
 pub const P: u64 = 649_942_387;
-pub const Q: u64 = 649_919_997;
+pub const NUM_POINTS: u64 = 649_919_997;
 
 // Point G
 pub const G: Point = Point {
@@ -49,3 +49,6 @@ pub const B: Point = Point {
 // Curve params
 pub const CURVE_A: u64 = 2;
 pub const CURVE_B: u64 = 2;
+
+// Random generated number
+pub const C: u64 = 574_083_228;

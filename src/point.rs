@@ -82,10 +82,10 @@ impl Point { pub fn new(x: u64, y: u64, infinity: bool) -> Point {
         let most_significant_bit = 63 - scalar.leading_zeros();
 
         // Iterating from most significant bit to least significant
-        for _i in (0..=most_significant_bit).rev() {
+        for i in (0..=most_significant_bit).rev() {
             result = result.double();
 
-            if ((scalar >> 1) & 1) == 1 {
+            if ((scalar >> i) & 1) == 1 {
                 result = result.add(self);
             }
         }
@@ -93,14 +93,7 @@ impl Point { pub fn new(x: u64, y: u64, infinity: bool) -> Point {
         result
     }
 
-    pub fn neg(&self) -> Point {
-        if self.infinity {
-            return Point::infinity();
-        }
-
-        Point::new(self.x, mod_neg(self.y, P), false)
-    }
-
+    // This one is just for testing
     pub fn is_on_curve(&self) -> bool {
         if self.infinity {
             return true;
