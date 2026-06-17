@@ -92,20 +92,4 @@ impl Point { pub fn new(x: u64, y: u64, infinity: bool) -> Point {
 
         result
     }
-
-    // This one is just for testing
-    pub fn is_on_curve(&self) -> bool {
-        if self.infinity {
-            return true;
-        }
-
-        let left = mod_mul(self.y, self.y, P);
-
-        let x2 = mod_mul(self.x, self.x, P);
-        let x3 = mod_mul(x2, self.x, P);
-
-        let right = mod_add(mod_add(x3, mod_mul(CURVE_A, self.x, P), P), CURVE_B, P);
-
-        left == right
-    }
 }

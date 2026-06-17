@@ -41,11 +41,3 @@ pub fn mod_div(a: u64, b: u64, p: u64) -> u64 {
 
     mod_mul(a, mod_inv(b, p), p)
 }
-
-pub fn mod_neg(a: u64, p: u64) -> u64 {
-    if a == 0 {
-        0
-    } else {
-        p - a
-    }
-}

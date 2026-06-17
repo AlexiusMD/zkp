@@ -41,15 +41,31 @@ fn main() {
 mod tests {
     use super::*;
     use crate::point::Point;
+    use crate::operations::{mod_mul, mod_add};
+
+    fn is_on_curve(point: &Point) -> bool {
+        if point.infinity {
+            return true;
+        }
+
+        let left = mod_mul(point.y, point.y, P);
+
+        let x2 = mod_mul(point.x, point.x, P);
+        let x3 = mod_mul(x2, point.x, P);
+
+        let right = mod_add(mod_add(x3, mod_mul(CURVE_A, point.x, P), P), CURVE_B, P);
+
+        left == right
+    }
 
     #[test]
     fn points_are_on_curve() {
-        assert!(G.is_on_curve());
-        assert!(X.is_on_curve());
-        assert!(R.is_on_curve());
-        assert!(Z.is_on_curve());
-        assert!(A.is_on_curve());
-        assert!(B.is_on_curve());
+        assert!(is_on_curve(&G));
+        assert!(is_on_curve(&X));
+        assert!(is_on_curve(&R));
+        assert!(is_on_curve(&Z));
+        assert!(is_on_curve(&A));
+        assert!(is_on_curve(&B));
     }
 
     #[test]
